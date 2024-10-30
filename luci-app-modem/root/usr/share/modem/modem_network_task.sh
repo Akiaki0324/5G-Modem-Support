@@ -20,8 +20,8 @@ reset_network_interface()
     local define_connect="$2"
     local modem_no="$3"
 
-    local interface_name="wwan_5g_${modem_no}"
-    local interface_name_ipv6="wwan6_5g_${modem_no}"
+    local interface_name="tethering"
+    local interface_name_ipv6="tethering6"
 
     #获取IPv4地址
     local at_command="AT+CGPADDR=${define_connect}"
@@ -201,8 +201,8 @@ modem_network_task()
     local manufacturer=$(uci -q get modem.modem${modem_no}.manufacturer)
     local platform=$(uci -q get modem.modem${modem_no}.platform)
     local define_connect=$(uci -q get modem.modem${modem_no}.define_connect)
-    local interface_name="wwan_5g_${modem_no}"
-    local interface_name_ipv6="wwan6_5g_${modem_no}"
+    local interface_name="tethering"
+    local interface_name_ipv6="tethering6"
 
     #重载配置（解决AT命令发不出去的问题）
     # service modem reload

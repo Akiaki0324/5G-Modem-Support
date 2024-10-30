@@ -195,10 +195,10 @@ set_interface()
 	local network_interface="$2"
 
 	case $pdp_type in
-		"ipv4") set_ipv4_interface "wwan_5g_${modem_no}" "${network_interface}" ;;
-		"ipv6") set_ipv6_interface "wwan6_5g_${modem_no}" "${network_interface}" ;;
-		"ipv4v6") set_ipv4v6_interface "wwan_5g_${modem_no}" "wwan6_5g_${modem_no}" "${network_interface}" ;;
-		*) set_ipv4v6_interface "wwan_5g_${modem_no}" "wwan6_5g_${modem_no}" "${network_interface}" ;;
+		"ipv4") set_ipv4_interface "tethering" "${network_interface}" ;;
+		"ipv6") set_ipv6_interface "tethering6" "${network_interface}" ;;
+		"ipv4v6") set_ipv4v6_interface "tethering" "tethering6" "${network_interface}" ;;
+		*) set_ipv4v6_interface "tethering" "tethering6" "${network_interface}" ;;
 	esac
 }
 
@@ -303,7 +303,7 @@ set_interface_modemmanager()
 modemmanager()
 {
 	#获取接口名称
-	local interface_name="wwan_5g_${modem_no}"
+	local interface_name="tethering"
 	#获取调制解调器设备（模组路径）
 	local path=$(uci -q get modem.modem${modem_no}.path)
 	#设置Modem Manager网络接口
@@ -388,7 +388,7 @@ stop_qmi()
 
 		#Modem Manager
 		#获取接口名称
-		local interface_name="wwan_5g_${modem_no}"
+		local interface_name="tethering"
 		if [[ "$command" = *"$interface_name"* ]]; then
 			local pid=$(echo "$response" | jq -r ".modem.instances.$i.pid")
 			kill $pid >/dev/null 2>&1

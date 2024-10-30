@@ -61,3 +61,7 @@
 - luci-app-cpe：https://github.com/ouyangzq/luci-app-cpe
 - sms-tool：https://github.com/obsy/sms_tool
 
+# 对于GL-inet路由器系统使用RNDIS模块
+安装官方插件后，直接用```luci-app-modem/root/etc/init.d/modem```覆盖```/etc/init.d/modem```,用```luci-app-modem/root/usr/share/modem/modem_network_task.sh```覆盖```/usr/share/modem/modem_network_task.sh```
+
+**请启动模块后先打开热点共享开关，再进行拨号。**
